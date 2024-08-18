@@ -10,3 +10,9 @@ def solution(money):
             answer.append(money)
             break
     return answer
+    
+#sol2
+def solution(money):
+    cup = money//5500
+    change = money%5500
+    return [cup, change]

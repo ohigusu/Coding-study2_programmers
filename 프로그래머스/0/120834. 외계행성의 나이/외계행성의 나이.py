@@ -1,8 +1,4 @@
 def solution(age):
-    answer = ''
-    age_1 = [str(i) for i in range(10)]
-    age_2 = [chr(i) for i in range(97, 108)]
-    encode = dict(zip(age_1, age_2))
-    for i in str(age):
-        answer+=encode[i]
-    return answer
+    hash= {'0':'a','1':'b','2':'c','3':'d','4':'e'
+            ,'5':'f','6':'g','7':'h','8':'i','9':'j'}
+    return ''.join(hash[i] for i in str(age))

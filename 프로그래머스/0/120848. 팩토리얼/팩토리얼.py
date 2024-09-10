@@ -3,4 +3,4 @@ def solution(n):
     while (result <= n):
         answer += 1
         result =  result * answer
-    return answer if result == n else answer - 1
+    return answer - 1

@@ -1,19 +1,4 @@
 # -- 코드를 입력하세요
-# WITH CTE AS (
-# SELECT SHIPMENT_ID
-#       ,FLAVOR
-#       ,SUM(TOTAL_ORDER) AS sum_order
-# FROM FIRST_HALF
-# GROUP BY FLAVOR
-    
-# UNION ALL
-
-# SELECT SHIPMENT_ID
-#       ,FLAVOR
-#       ,SUM(TOTAL_ORDER) AS sum_order
-# FROM JULY
-# GROUP BY FLAVOR
-# )
 
 SELECT a.FLAVOR
 FROM (

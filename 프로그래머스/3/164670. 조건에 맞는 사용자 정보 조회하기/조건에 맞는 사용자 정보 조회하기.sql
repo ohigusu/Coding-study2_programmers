@@ -1,0 +1,10 @@
+-- 코드를 입력하세요
+SELECT ugu.USER_ID
+      ,ugu.NICKNAME
+      ,CONCAT(ugu.CITY,' ',ugu.STREET_ADDRESS1,' ',ugu.STREET_ADDRESS2) AS '전체주소'
+      ,CONCAT(LEFT(ugu.TLNO,3),'-',SUBSTR(ugu.TLNO,4,4),'-',RIGHT(ugu.TLNO,4)) AS '전화번호'
+FROM USED_GOODS_BOARD AS ugb
+    INNER JOIN USED_GOODS_USER AS ugu ON ugb.WRITER_ID = ugu.USER_ID
+GROUP BY ugu.USER_ID
+    HAVING COUNT(*) >= 3
+ORDER BY ugu.USER_ID DESC

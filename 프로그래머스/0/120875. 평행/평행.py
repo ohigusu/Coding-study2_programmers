@@ -1,20 +1,6 @@
-def is_parallel(a, b, c, d):
-    x, y = 0, 1
-    g1 = (b[y] - a[y]) / (b[x] - a[x])
-    g2 = (d[y] - c[y]) / (d[x] - c[x])
-
-    return 1 if g1 == g2 else 0
-
-
 def solution(dots):
-    answer = 0
-    a, b, c, d = dots
-
-    aa = is_parallel(a, b, c, d)
-    bb = is_parallel(a, c, b, d)
-    cc = is_parallel(a, d, b, c)
-
-    if 1 in [aa, bb, cc]:
-        answer = 1
-
-    return answer
+    [[x1, y1], [x2, y2], [x3, y3], [x4, y4]]=dots
+    answer1 = ((y1-y2)/(x1-x2) == (y3-y4)/(x3-x4))
+    answer2 = ((y1-y3)/(x1-x3) == (y2-y4)/(x2-x4))
+    answer3 = ((y1-y4)/(x1-x4) == (y2-y3)/(x2-x3))
+    return 1 if answer1 or answer2 or answer3 else 0

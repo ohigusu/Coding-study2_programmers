@@ -7,7 +7,6 @@ def is_parallel(a, b, c, d):
 
 
 def solution(dots):
-    dots.sort(key=lambda x: x[0])
     answer = 0
     a, b, c, d = dots
 

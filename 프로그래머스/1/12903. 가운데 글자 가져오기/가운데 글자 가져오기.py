@@ -1,9 +1,3 @@
 def solution(s):
-    answer = ''
-    n = len(s)
-    if n%2 == 0:
-        mid = n//2
-        answer = s[mid-1:mid+1]
-    else:
-        answer = s[n//2]
-    return answer
+    n,mid = len(s),len(s)//2
+    return s[mid-1:mid+1] if n%2 == 0 else s[n//2]

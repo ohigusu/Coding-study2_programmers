@@ -1,7 +1,11 @@
 def solution(n):
-    ternary = ''
-    while n > 0:
-        ternary += str(n%3)
-        n = n//3
-        
-    return int(ternary,3)
+    n_3=[]
+    while n>0:
+        n_3.append(n%3)
+        n//=3
+    answer = 0
+    for i in range(len(n_3)):
+        answer*=3
+        answer+=n_3[i]
+    return answer
+ 

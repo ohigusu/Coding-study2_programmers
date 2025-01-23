@@ -1,0 +1,9 @@
+-- 코드를 작성해주세요
+SELECT DISTINCT d.ID
+      ,d.EMAIL
+      ,d.FIRST_NAME
+      ,d.LAST_NAME
+FROM SKILLCODES s
+    INNER JOIN DEVELOPERS d ON s.CODE&d.SKILL_CODE = s.CODE 
+WHERE s.CATEGORY = 'Front End'
+ORDER BY d.ID ASC

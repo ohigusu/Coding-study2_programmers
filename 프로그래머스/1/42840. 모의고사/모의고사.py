@@ -5,7 +5,8 @@ def solution(answers):
     dic[3] = [3, 3, 1, 1, 2, 2, 4, 4, 5, 5]
     
     for key, value in dic.items():
-        cnt = sum(1 for i, j in zip(answers, value * (len(answers) // len(value) + 1)) if i == j)
+        cand = value * (len(answers)//len(value)) + value[:(len(answers)%len(value))]
+        cnt = sum(1 for i, j in zip(answers, cand) if i == j)
         
         if cnt > pre:
             pre = cnt

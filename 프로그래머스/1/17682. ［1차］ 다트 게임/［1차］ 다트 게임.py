@@ -1,34 +1,25 @@
 def solution(dartResult):
-    answer,i = 0,0
     score = []
-    pa = True
-    area = ['S', 'D', 'T']
-    for k in range(len(dartResult)):
-        dart = dartResult[k]
-
-        if pa:
-            if dart in area: 
-                score[i - 1] = score[i - 1] ** (area.index(dart)+1)
-                
-            elif dart in ['*', '#']:
-                if dart == '*':
-                    if i == 1:
-                        score[i - 1] *= 2
-                    else:
-                        for j in range(i - 2, i):
-                            score[j] *= 2
-                else: 
-                    score[i - 1] *= -1
-
-            else:  
-                if dart == '1' and dartResult[k + 1] == '0':
-                    pa = False
-                    score.append(10)
-                else:
-                    score.append(int(dart))
-                i += 1
-
+    area = {'S': 1, 'D': 2, 'T': 3}
+    k = 0
+    while k < len(dartResult):
+        if dartResult[k:k+2] == '10':
+            score.append(10)
+            k += 2
         else:
-            pa = True  
-    answer = sum(score)
-    return answer
+            score.append(int(dartResult[k]))
+            k += 1
+        
+        score[-1] **= area[dartResult[k]]
+        k += 1
+        
+        if k < len(dartResult) and dartResult[k] in ('*','#'):
+            if dartResult[k] == '*':
+                score[-1] *= 2
+                if len(score) > 1: 
+                    score[-2] *= 2
+            else:
+                score[-1] *= -1
+            k += 1  
+    
+    return sum(score)

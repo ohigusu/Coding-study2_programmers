@@ -1,21 +1,15 @@
 def solution(dartResult):
-    answer = 0
-    i = 0
+    answer,i = 0,0
     score = []
     pa = True
-
+    area = ['S', 'D', 'T']
     for k in range(len(dartResult)):
         dart = dartResult[k]
 
         if pa:
-            if dart in ['S', 'D', 'T']:
-                if dart == 'S':
-                    pass
-                elif dart == 'D':
-                    score[i - 1] = score[i - 1] ** 2
-                else:  
-                    score[i - 1] = score[i - 1] ** 3
-
+            if dart in area: 
+                score[i - 1] = score[i - 1] ** (area.index(dart)+1)
+                
             elif dart in ['*', '#']:
                 if dart == '*':
                     if i == 1:

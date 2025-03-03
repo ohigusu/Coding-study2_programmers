@@ -9,15 +9,11 @@ def solution(id_list, report, k):
     n = len(id_list)
     answer = [0]*n
     result = [[0]*n for _ in range(n+1)]
-    for rep in report:
+    for rep in set(report):
         give, receive = rep.split(" ")
         give_idx,receive_idx = id_list.index(give),id_list.index(receive)
-        
-        if result[give_idx][receive_idx] == 1:
-            pass
-        else:
-            result[give_idx][receive_idx] = 1
-            result[n][receive_idx] += 1
+        result[give_idx][receive_idx] = 1
+        result[n][receive_idx] += 1
     for idx,i in enumerate(result[n]):
         if i < k:
             pass

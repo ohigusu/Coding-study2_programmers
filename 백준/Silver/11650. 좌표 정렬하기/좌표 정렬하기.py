@@ -1,20 +1,14 @@
-N = int(input()) 
-res = {}
+from collections import defaultdict
+import sys
+import bisect
+
+N = int(sys.stdin.readline().strip())  
+res = defaultdict(list)
 
 for _ in range(N):
-    word = input()
-    x, y = word.split()
-    x, y = int(x), int(y)
-    
-    if x in res:
-        res[x].append(y)
-    else:
-        res[x] = [y]
+    x, y = map(int, sys.stdin.readline().split())
+    bisect.insort(res[x], y)  
 
-sorted_res = sorted(res.items())  
-
-for x, li_y in sorted_res:
-    li_y.sort() 
-    for y in li_y:
-        print(f"{x} {y}") 
-
+for x in sorted(res.keys()): 
+    for y in res[x]:  
+        print(f"{x} {y}")

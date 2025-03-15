@@ -1,7 +1,5 @@
-import math
 def solution(n):
-    answer = 0
-    for two_num in range(n // 2 + 1):
-        one_num = n - 2 * two_num
-        answer += math.comb(two_num+one_num,one_num) 
-    return answer% 1234567
+    a, b = 1, 2 
+    for _ in range(3, n+1):
+        a, b = b, (a + b) % 1234567
+    return b if n > 1 else a

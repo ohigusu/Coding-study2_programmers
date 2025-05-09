@@ -1,26 +1,33 @@
-from collections import defaultdict
-computer =  int(input())
-active = int(input())
-graph = defaultdict(list)
-for _ in range(active):
-	start,end=map(int,input().split())
-	graph[start].append(end)
-	graph[end].append(start)
+N = int(input().strip())
+K = int(input().strip())
 
-def dfs(graph,start):
-	stack=[start]
-	answer=0
-	visited = [False]*(computer+1)
-	
-	while stack:
-		node = stack.pop()
-		if not visited[node]:
-			visited[node]=True	
-			answer += 1
-			for neighbor in reversed(graph[node]):
-				if not visited[neighbor]:
-					stack.append(neighbor)
-	return answer
+graph = [[] for _ in range(N+1)]
 
-answer = dfs(graph,1)
-print(answer-1)
+
+for _ in range(K):
+    a,b = map(int,input().strip().split())
+    graph[a].append(b)
+    graph[b].append(a)
+
+visited =[False]*(N+1)
+
+def dfs(start):
+    cnt = 0
+    stack = [start]
+    visited[start]=True
+    while stack:
+        node = stack.pop()
+        for next_node in graph[node]:
+            if not visited[next_node]:
+                visited[next_node]=True
+                cnt += 1
+                stack.append(next_node)
+    return cnt
+
+
+if len(graph[1])>0:
+    cnt = dfs(1)
+else:
+    cnt = 0
+
+print(cnt)

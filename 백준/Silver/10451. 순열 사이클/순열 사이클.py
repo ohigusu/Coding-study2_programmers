@@ -1,29 +1,32 @@
-def find_cycle(graph, visited, start):
+def dfs(graph, visited, start):
     stack = [start]
+    visited[start] = True
     while stack:
-        node= stack.pop()
-        if not visited[node]:
-            visited[node] = True
-            stack.append(graph[node])
+        node = stack.pop()
+        next_node = graph[node]
+        if not visited[next_node]:
+            visited[next_node] = True
+            stack.append(next_node)
+                
 
-def count_cycles(n,permutation):
+def cnt_cycle(n,graph):
     visited = [False]*(n+1)
-    cycle_count = 0
-
+    cnt = 0
     for i in range(1,n+1):
         if not visited[i]:
-            find_cycle(permutation, visited, i)
-            cycle_count += 1
-    return cycle_count
+            dfs(graph,visited,i)
+            cnt += 1
+    return cnt
 
-t = int(input())
+T = int(input().strip())
 results = []
 
-for _ in range(t):
+for _ in range(T):
     n = int(input().strip())
-    permutation = [0]+list(map(int,input().strip().split()))
-    result = count_cycles(n,permutation)
+    graph = [0]+list(map(int,input().strip().split()))
+    result = cnt_cycle(n,graph)
     results.append(result)
 
 for res in results:
     print(res)
+

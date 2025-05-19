@@ -19,12 +19,10 @@ target = 1130
 idx, best_end, cnt = 0, 0, 0
 
 while need <= target:
-    extended = False
     while idx < N and flowers[idx][0] <= need:
         best_end = max(best_end, flowers[idx][1])
         idx += 1
-        extended = True
-    if not extended or best_end <= need:
+    if best_end <= need:
         print(0)
         sys.exit()
     need = best_end

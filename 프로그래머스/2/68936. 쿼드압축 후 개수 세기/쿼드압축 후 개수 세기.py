@@ -16,10 +16,11 @@ def solution(arr):
             answer[initial] += 1
         else:
             half = size // 2
-            compress(x, y, half)
-            compress(x, y + half, half)
-            compress(x + half, y, half)
-            compress(x + half, y + half, half)
+            if half > 0:
+                compress(x, y, half)
+                compress(x, y + half, half)
+                compress(x + half, y, half)
+                compress(x + half, y + half, half)
 
     compress(0, 0, len(arr))
     return answer

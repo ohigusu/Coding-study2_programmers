@@ -8,17 +8,23 @@ def solution(numbers):
             if n % i == 0:
                 return False
         return True
-    
-    def dfs(temp,storage):
+    visited = [False]*len(numbers)
+    def backtrack(path,store):
         nonlocal answer
-        if temp != "":
-            num = int(temp)
-            if num not in storage:
-                storage.add(num)
+        if len(path) > 0:
+            num = int("".join(path))
+            if num not in store:
+                store.append(num)
                 if is_prime(num):
-                    answer += 1    
-        for i in numbers:
-            if temp.count(i) < numbers.count(i):
-                dfs(temp+i,storage)
-    dfs("",set())
+                    answer += 1
+        if len(path) == len(numbers):
+            return
+        for i in range(len(numbers)):
+            if not visited[i]:
+                visited[i] = True
+                path.append(numbers[i])
+                backtrack(path,store)
+                path.pop()
+                visited[i]=False
+    backtrack([],[])
     return answer

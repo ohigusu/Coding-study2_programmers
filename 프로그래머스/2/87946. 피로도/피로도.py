@@ -8,6 +8,8 @@ def solution(k, dungeons):
     def dfs(fatigue, count):
         nonlocal max_count
         max_count = max(max_count, count)
+        if len(dungeons) == max_count:
+            return
         for i in range(len(dungeons)):  # 가능한 선택들: 방문 안한 던전들
             min_req, cost = dungeons[i]
             # 🟥 조건 안 맞으면 백트래킹

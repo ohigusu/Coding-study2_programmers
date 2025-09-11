@@ -1,10 +1,16 @@
-from collections import Counter
+#from collections import Counter
 def solution(participant, completion):
-    # count = Counter(participant)  
-    # for name in completion:
-    #     count[name] -= 1  
-    # for name, cnt in count.items():
-    #     if cnt > 0:
-    #         return name
-    answer = Counter(participant) - Counter(completion)
-    return list(answer.keys())[0]
+    hash_map = {}
+    # 완주자 명단 카운팅
+    for com in completion:
+        if com in hash_map:
+            hash_map[com] += 1
+        else:
+            hash_map[com] = 1
+     # 참가자 명단 확인
+    for part in participant:
+        if part not in hash_map or hash_map[part] == 0:
+            return part
+        else:
+            hash_map[part] -= 1
+            

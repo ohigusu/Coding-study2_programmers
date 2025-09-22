@@ -1,11 +1,7 @@
 def solution(triangle):
-    answer = 0
-    n = len(triangle)
-    dp = [row[:] for row in triangle]
-    
-    for i in range(1,n):
-        for j in range(i+1):
-            l = dp[i-1][j-1] if j-1>=0 else 0
-            r = dp[i-1][j] if j<i else 0
-            dp[i][j]  += max(l,r)
-    return max(dp[-1])
+    # tri를 직접 수정하기 싫으면 deepcopy
+    dp = [row[:] for row in triangle]  # dp[i][j]: (i,j)까지의 최대합
+    for i in range(len(dp)-2, -1, -1):        # 아래에서 위로
+        for j in range(len(dp[i])):
+            dp[i][j] += max(dp[i+1][j], dp[i+1][j+1])
+    return dp[0][0]
